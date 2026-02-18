@@ -1,6 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Typography } from "@/components/ui/Typography";
 import { Button } from "@/components/ui/Button";
@@ -13,6 +15,8 @@ const NAV_LINKS = [
 ];
 
 export function Navbar() {
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
         <motion.nav
             initial={{ y: -10, opacity: 0 }}
@@ -26,6 +30,7 @@ export function Navbar() {
                         VixenOS<span className="text-accent">.</span>
                     </a>
 
+                    {/* Desktop Links */}
                     <div className="hidden md:flex items-center gap-8">
                         {NAV_LINKS.map(link => (
                             <a
@@ -40,10 +45,51 @@ export function Navbar() {
                 </div>
 
                 <div className="flex items-center gap-3">
-                    <Button variant="ghost" size="sm">Log in</Button>
-                    <Button variant="primary" size="sm">Get started</Button>
+                    <div className="hidden md:flex items-center gap-3">
+                        <Button variant="ghost" size="sm">Log in</Button>
+                        <Button variant="primary" size="sm">Get started</Button>
+                    </div>
+
+                    {/* Mobile Toggle */}
+                    <button
+                        onClick={() => setIsOpen(!isOpen)}
+                        className="p-2 md:hidden text-text-1 hover:bg-bg-1 rounded-lg transition-colors"
+                        aria-label="Toggle menu"
+                    >
+                        {isOpen ? <X size={20} /> : <Menu size={20} />}
+                    </button>
                 </div>
             </Container>
+
+            {/* Mobile Menu Overlay */}
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.2, ease: "easeInOut" }}
+                        className="absolute top-16 left-0 right-0 bg-white border-b border-border-0 md:hidden overflow-hidden shadow-xl"
+                    >
+                        <div className="flex flex-col p-6 gap-4">
+                            {NAV_LINKS.map(link => (
+                                <a
+                                    key={link.label}
+                                    href={link.href}
+                                    className="text-[15px] font-medium text-text-1 hover:text-accent transition-colors"
+                                    onClick={() => setIsOpen(false)}
+                                >
+                                    {link.label}
+                                </a>
+                            ))}
+                            <div className="pt-4 flex flex-col gap-3 border-t border-border-0">
+                                <Button variant="ghost" className="w-full justify-center">Log in</Button>
+                                <Button variant="primary" className="w-full justify-center">Get started</Button>
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </motion.nav>
     );
 }
