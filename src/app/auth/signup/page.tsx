@@ -1,12 +1,20 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Typography } from "@/components/ui/Typography";
 import { Button } from "@/components/ui/Button";
 import { ArrowRight } from "lucide-react";
 
 export default function SignupPage() {
+    const router = useRouter();
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        router.push("/dashboard");
+    };
+
     return (
         <motion.div
             initial={{ opacity: 0, x: 20 }}
@@ -50,7 +58,7 @@ export default function SignupPage() {
             </div>
 
             {/* Email Form */}
-            <form className="space-y-4 mb-8">
+            <form className="space-y-4 mb-8" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-2 gap-4">
                     <div>
                         <label className="block text-[13px] font-medium text-text-1 mb-2">First name</label>
