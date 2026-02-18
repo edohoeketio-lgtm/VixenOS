@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Typography } from "@/components/ui/Typography";
 import { Button } from "@/components/ui/Button";
 import { ArrowUp, ArrowDown, Download, Calendar } from "lucide-react";
+import { toast } from "sonner";
 
 const METRICS = [
     { label: "Total Views", value: "1.2M", change: "+12.5%", trend: "up" },
@@ -23,11 +24,11 @@ export default function AnalyticsPage() {
                     </Typography>
                 </div>
                 <div className="flex gap-3">
-                    <Button variant="secondary" className="gap-2">
+                    <Button variant="secondary" className="gap-2" onClick={() => toast.info("Date picker would open here")}>
                         <Calendar size={16} />
                         Last 30 Days
                     </Button>
-                    <Button variant="secondary" className="gap-2">
+                    <Button variant="secondary" className="gap-2" onClick={() => toast.success("Report downloaded via CSV")}>
                         <Download size={16} />
                         Export
                     </Button>

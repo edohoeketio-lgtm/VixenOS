@@ -3,8 +3,10 @@
 import { motion } from "framer-motion";
 import { Typography } from "@/components/ui/Typography";
 import { Button } from "@/components/ui/Button";
-import { Plus, Search, MoreHorizontal, Play, Download, ExternalLink } from "lucide-react";
+import { Plus, Search, MoreHorizontal, Play, Download } from "lucide-react";
 import Image from "next/image";
+import { toast } from "sonner";
+import Link from "next/link";
 
 const CAMPAIGNS = [
     {
@@ -76,10 +78,12 @@ export default function VideoAdsPage() {
                         Manage your generated video campaigns and track performance.
                     </Typography>
                 </div>
-                <Button variant="primary" className="gap-2">
-                    <Plus size={16} />
-                    Create New Ad
-                </Button>
+                <Link href="/dashboard/create">
+                    <Button variant="primary" className="gap-2">
+                        <Plus size={16} />
+                        Create New Ad
+                    </Button>
+                </Link>
             </div>
 
             {/* Filters / Search */}
@@ -163,10 +167,17 @@ export default function VideoAdsPage() {
 
                             {/* Actions */}
                             <div className="col-span-6 md:col-span-1 flex items-center justify-end gap-2">
-                                <button className="p-2 text-text-2 hover:text-text-0 hover:bg-bg-2 rounded-lg transition-colors" title="Download">
+                                <button
+                                    className="p-2 text-text-2 hover:text-text-0 hover:bg-bg-2 rounded-lg transition-colors"
+                                    title="Download"
+                                    onClick={() => toast.success("Downloading video assets...")}
+                                >
                                     <Download size={16} />
                                 </button>
-                                <button className="p-2 text-text-2 hover:text-text-0 hover:bg-bg-2 rounded-lg transition-colors">
+                                <button
+                                    className="p-2 text-text-2 hover:text-text-0 hover:bg-bg-2 rounded-lg transition-colors"
+                                    onClick={() => toast.info("Campaign options menu")}
+                                >
                                     <MoreHorizontal size={16} />
                                 </button>
                             </div>

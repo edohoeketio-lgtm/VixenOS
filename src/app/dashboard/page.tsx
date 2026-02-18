@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Typography } from "@/components/ui/Typography";
 import { Button } from "@/components/ui/Button";
 import { Plus } from "lucide-react";
+import Link from "next/link";
 
 export default function DashboardPage() {
     return (
@@ -34,9 +35,11 @@ export default function DashboardPage() {
                 <Typography variant="body" className="text-text-2 max-w-md mb-8">
                     You haven&apos;t generated any video ads yet. Select an actor, write a script, and get your first video in minutes.
                 </Typography>
-                <Button variant="primary" size="lg">
-                    Create New Campaign
-                </Button>
+                <Link href="/dashboard/create">
+                    <Button variant="primary" size="lg">
+                        Create New Campaign
+                    </Button>
+                </Link>
             </motion.div>
         </div>
     );

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Typography } from "@/components/ui/Typography";
 import { Button } from "@/components/ui/Button";
 import { Check, CreditCard, Download, Zap } from "lucide-react";
+import { toast } from "sonner";
 
 export default function BillingPage() {
     return (
@@ -47,8 +48,8 @@ export default function BillingPage() {
                         </div>
 
                         <div className="flex gap-4">
-                            <Button variant="outline">Update Metrics</Button>
-                            <Button variant="secondary">Cancel Subscription</Button>
+                            <Button variant="outline" onClick={() => toast.info("Refreshing usage metrics...")}>Update Metrics</Button>
+                            <Button variant="secondary" onClick={() => toast.error("Please contact support to cancel")}>Cancel Subscription</Button>
                         </div>
                     </section>
 
@@ -63,7 +64,7 @@ export default function BillingPage() {
                                 <p className="text-[12px] text-text-3">Expiry 12/28</p>
                             </div>
                         </div>
-                        <Button variant="ghost" size="sm">Edit</Button>
+                        <Button variant="ghost" size="sm" onClick={() => toast.info("Payment method modal")}>Edit</Button>
                     </section>
                 </div>
 
@@ -85,7 +86,7 @@ export default function BillingPage() {
                                 </li>
                             ))}
                         </ul>
-                        <Button className="w-full bg-white text-black hover:bg-white/90">Contact Sales</Button>
+                        <Button className="w-full bg-white text-black hover:bg-white/90" onClick={() => toast.success("Sales team notified!")}>Contact Sales</Button>
                     </div>
                 </div>
             </div>

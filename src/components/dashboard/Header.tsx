@@ -2,6 +2,8 @@
 
 import { Bell, HelpCircle, Search, Plus } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { toast } from "sonner";
+import Link from "next/link";
 
 export function Header() {
     return (
@@ -18,18 +20,20 @@ export function Header() {
             </div>
 
             <div className="flex items-center gap-4">
-                <button className="text-text-2 hover:text-text-0 transition-colors">
+                <button className="text-text-2 hover:text-text-0 transition-colors" onClick={() => toast.info("Help Center opening soon")}>
                     <HelpCircle size={20} />
                 </button>
-                <button className="text-text-2 hover:text-text-0 transition-colors relative">
+                <button className="text-text-2 hover:text-text-0 transition-colors relative" onClick={() => toast.message("No new notifications")}>
                     <Bell size={20} />
                     <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full border-2 border-bg-0" />
                 </button>
                 <div className="h-6 w-px bg-border-0 mx-2" />
-                <Button variant="primary" size="sm" className="gap-2">
-                    <Plus size={16} />
-                    <span>New Campaign</span>
-                </Button>
+                <Link href="/dashboard/create">
+                    <Button variant="primary" size="sm" className="gap-2">
+                        <Plus size={16} />
+                        <span>New Campaign</span>
+                    </Button>
+                </Link>
                 <div className="w-8 h-8 rounded-full bg-gradient-to-br from-accent to-purple-600 ml-2" />
             </div>
         </header>

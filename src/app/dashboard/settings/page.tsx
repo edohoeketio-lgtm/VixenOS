@@ -4,7 +4,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Typography } from "@/components/ui/Typography";
 import { Button } from "@/components/ui/Button";
-import { User, Bell, Key, Image as ImageIcon, Mail, Lock, Shield, Eye, EyeOff } from "lucide-react";
+import { User, Bell, Key, Image as ImageIcon, Mail, Shield, Eye, EyeOff } from "lucide-react";
+import { toast } from "sonner";
 
 const TABS = [
     { id: "profile", label: "Profile", icon: User },
@@ -75,8 +76,8 @@ function ProfileSettings() {
                     </div>
                     <div>
                         <div className="flex gap-3 mb-2">
-                            <Button variant="secondary" size="sm">Change Avatar</Button>
-                            <Button variant="ghost" size="sm" className="text-red-500 hover:text-red-600 hover:bg-red-50">Remove</Button>
+                            <Button variant="secondary" size="sm" onClick={() => toast.info("Opening file picker...")}>Change Avatar</Button>
+                            <Button variant="ghost" size="sm" className="text-red-500 hover:text-red-600 hover:bg-red-50" onClick={() => toast.success("Avatar removed")}>Remove</Button>
                         </div>
                         <p className="text-[12px] text-text-3">JPG, GIF or PNG. 1MB max.</p>
                     </div>
@@ -103,7 +104,7 @@ function ProfileSettings() {
                     </div>
                 </div>
                 <div className="pt-2 flex justify-end">
-                    <Button variant="primary">Save Changes</Button>
+                    <Button variant="primary" onClick={() => toast.success("Profile settings saved")}>Save Changes</Button>
                 </div>
             </section>
         </motion.div>
@@ -167,11 +168,11 @@ function ApiSettings() {
                     <button onClick={() => setVisible(!visible)} className="text-text-3 hover:text-text-0">
                         {visible ? <EyeOff size={16} /> : <Eye size={16} />}
                     </button>
-                    <Button variant="secondary" size="sm">Copy</Button>
+                    <Button variant="secondary" size="sm" onClick={() => toast.success("Copied to clipboard")}>Copy</Button>
                 </div>
             </div>
 
-            <Button variant="outline" className="text-red-500 border-red-200 hover:bg-red-50 hover:border-red-300">
+            <Button variant="outline" className="text-red-500 border-red-200 hover:bg-red-50 hover:border-red-300" onClick={() => toast.error("Key rolled. Integration may be interrupted.")}>
                 Roll Key
             </Button>
         </motion.div>

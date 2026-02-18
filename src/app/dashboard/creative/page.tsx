@@ -5,6 +5,7 @@ import { Typography } from "@/components/ui/Typography";
 import { Button } from "@/components/ui/Button";
 import { Upload, Image as ImageIcon, Film, Filter, MoreHorizontal } from "lucide-react";
 import Image from "next/image";
+import { toast } from "sonner";
 
 const ASSETS = [
     { id: 1, type: "image", src: "/images/actors/sophia.png", name: "Product Shot - Serum", date: "2 mins ago" },
@@ -26,11 +27,11 @@ export default function CreativePage() {
                     </Typography>
                 </div>
                 <div className="flex gap-3">
-                    <Button variant="secondary" className="gap-2">
+                    <Button variant="secondary" className="gap-2" onClick={() => toast.info("Filter functionality coming soon")}>
                         <Filter size={16} />
                         Filter
                     </Button>
-                    <Button variant="primary" className="gap-2">
+                    <Button variant="primary" className="gap-2" onClick={() => toast.success("Upload modal would open here")}>
                         <Upload size={16} />
                         Upload New
                     </Button>
@@ -62,6 +63,7 @@ export default function CreativePage() {
                 <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
+                    onClick={() => toast.success("Upload modal would open here")}
                     className="aspect-square border-2 border-dashed border-border-0 rounded-xl flex flex-col items-center justify-center bg-bg-1/30 cursor-pointer hover:bg-bg-1 hover:border-accent/50 transition-colors group"
                 >
                     <div className="w-12 h-12 rounded-full bg-bg-2 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
@@ -99,7 +101,13 @@ export default function CreativePage() {
 
                         {/* Actions */}
                         <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <button className="p-1.5 bg-white rounded-lg shadow-sm hover:bg-gray-50">
+                            <button
+                                className="p-1.5 bg-white rounded-lg shadow-sm hover:bg-gray-50"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    toast.info("Asset options menu");
+                                }}
+                            >
                                 <MoreHorizontal size={14} className="text-text-0" />
                             </button>
                         </div>
