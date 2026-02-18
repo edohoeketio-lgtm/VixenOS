@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { Typography } from "@/components/ui/Typography";
 import { Button } from "@/components/ui/Button";
 
 const NAV_LINKS = [
@@ -26,20 +26,20 @@ export function Navbar() {
         >
             <Container className="h-full flex items-center justify-between">
                 <div className="flex items-center gap-10">
-                    <a href="/" className="text-[17px] font-bold tracking-tight text-text-0 cursor-pointer">
+                    <Link href="/" className="text-[17px] font-bold tracking-tight text-text-0 cursor-pointer">
                         VixenOS<span className="text-accent">.</span>
-                    </a>
+                    </Link>
 
                     {/* Desktop Links */}
                     <div className="hidden md:flex items-center gap-8">
                         {NAV_LINKS.map(link => (
-                            <a
+                            <Link
                                 key={link.label}
                                 href={link.href}
                                 className="text-[13px] font-medium text-text-2 hover:text-text-0 transition-colors"
                             >
                                 {link.label}
-                            </a>
+                            </Link>
                         ))}
                     </div>
                 </div>
@@ -73,18 +73,22 @@ export function Navbar() {
                     >
                         <div className="flex flex-col p-6 gap-4">
                             {NAV_LINKS.map(link => (
-                                <a
+                                <Link
                                     key={link.label}
                                     href={link.href}
                                     className="text-[15px] font-medium text-text-1 hover:text-accent transition-colors"
                                     onClick={() => setIsOpen(false)}
                                 >
                                     {link.label}
-                                </a>
+                                </Link>
                             ))}
                             <div className="pt-4 flex flex-col gap-3 border-t border-border-0">
-                                <Button variant="ghost" className="w-full justify-center">Log in</Button>
-                                <Button variant="primary" className="w-full justify-center">Get started</Button>
+                                <Link href="/auth/login" onClick={() => setIsOpen(false)}>
+                                    <Button variant="ghost" className="w-full justify-center">Log in</Button>
+                                </Link>
+                                <Link href="/auth/signup" onClick={() => setIsOpen(false)}>
+                                    <Button variant="primary" className="w-full justify-center">Get started</Button>
+                                </Link>
                             </div>
                         </div>
                     </motion.div>
