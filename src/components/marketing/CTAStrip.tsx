@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Typography } from "@/components/ui/Typography";
 import { Button } from "@/components/ui/Button";
@@ -17,13 +18,15 @@ export function CTAStrip() {
                         Join 500+ performance marketing teams creating winning ads with AI. Start your free trial today.
                     </Typography>
                     <div className="flex flex-wrap justify-center gap-4 pt-2">
-                        <Button
-                            size="lg"
-                            className="bg-white text-text-0 hover:bg-white/90 shadow-lg hover:shadow-xl"
-                        >
-                            Start free trial
-                            <ArrowRight size={16} />
-                        </Button>
+                        <Link href="/auth/signup">
+                            <Button
+                                size="lg"
+                                className="bg-white text-text-0 hover:bg-white/90 shadow-lg hover:shadow-xl"
+                            >
+                                Start free trial
+                                <ArrowRight size={16} />
+                            </Button>
+                        </Link>
                         <Button
                             variant="ghost"
                             size="lg"

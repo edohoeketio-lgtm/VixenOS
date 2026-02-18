@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Typography } from "@/components/ui/Typography";
@@ -47,10 +48,12 @@ export function Hero() {
                         transition={{ delay: 0.3, duration: 0.5 }}
                         className="flex flex-wrap justify-center gap-4"
                     >
-                        <Button size="lg">
-                            Start free trial
-                            <ArrowRight size={16} />
-                        </Button>
+                        <Link href="/auth/signup">
+                            <Button size="lg">
+                                Start free trial
+                                <ArrowRight size={16} />
+                            </Button>
+                        </Link>
                         <Button variant="secondary" size="lg">
                             Watch demo
                         </Button>

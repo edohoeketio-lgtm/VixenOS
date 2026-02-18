@@ -46,8 +46,12 @@ export function Navbar() {
 
                 <div className="flex items-center gap-3">
                     <div className="hidden md:flex items-center gap-3">
-                        <Button variant="ghost" size="sm">Log in</Button>
-                        <Button variant="primary" size="sm">Get started</Button>
+                        <Link href="/auth/login">
+                            <Button variant="ghost" size="sm">Log in</Button>
+                        </Link>
+                        <Link href="/auth/signup">
+                            <Button variant="primary" size="sm">Get started</Button>
+                        </Link>
                     </div>
 
                     {/* Mobile Toggle */}

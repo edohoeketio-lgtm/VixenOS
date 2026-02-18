@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 
 const FOOTER_LINKS = [
@@ -25,9 +26,9 @@ export function Footer() {
             <Container>
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-12 mb-16">
                     <div className="col-span-2 md:col-span-1 mb-4 md:mb-0">
-                        <a href="/" className="text-[17px] font-bold tracking-tight text-text-0">
+                        <Link href="/" className="text-[17px] font-bold tracking-tight text-text-0">
                             VixenOS<span className="text-accent">.</span>
-                        </a>
+                        </Link>
                         <p className="mt-3 text-[13px] text-text-3 leading-relaxed max-w-[180px]">
                             AI-powered creative production for performance marketers.
                         </p>

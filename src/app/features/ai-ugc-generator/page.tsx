@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Navbar } from "@/components/marketing/Navbar";
 import { Container } from "@/components/ui/Container";
 import { Typography } from "@/components/ui/Typography";
@@ -74,8 +75,8 @@ function ActorSlideshow() {
                         key={a.name}
                         onClick={() => setCurrent(i)}
                         className={`w-2 h-2 rounded-full transition-all duration-300 ${i === current
-                                ? "bg-accent w-6"
-                                : "bg-black/15 hover:bg-black/30"
+                            ? "bg-accent w-6"
+                            : "bg-black/15 hover:bg-black/30"
                             }`}
                     />
                 ))}
@@ -101,9 +102,11 @@ export default function FeaturePage() {
                             <Typography variant="body-lg" className="mb-10 text-text-2">
                                 Generate studio-quality UGC video ads in minutes. Choose your actor, write your script, and launch winning creative at scale.
                             </Typography>
-                            <Button size="lg">
-                                Start generating <ArrowRight size={16} />
-                            </Button>
+                            <Link href="/auth/signup">
+                                <Button size="lg">
+                                    Start generating <ArrowRight size={16} />
+                                </Button>
+                            </Link>
                         </div>
 
                         {/* Right: Actor slideshow */}
